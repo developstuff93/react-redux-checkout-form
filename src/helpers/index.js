@@ -7,11 +7,12 @@ export const maxLength = (max) => (value) =>
   value && value.length > max ? `Must be ${max} characters or less` : undefined;
 export const minLength = (min) => (value) =>
   value && value.length < min ? `Must be ${min} characters or more` : undefined;
+  
 export const validateExpiration = (value) => {
   const [month, year] = value.split("/");
   if (!Number(month) || Number(month) > 12) return "Invalid Month";
   if (new Date(`20${year}`, Number(month) - 1) < new Date())
-    return "Should be laster date";
+    return "Should be in the future";
   return undefined;
 };
 
