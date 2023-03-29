@@ -27,11 +27,11 @@ const CheckoutForm = ({ handleSubmit, submitting }) => {
       <hr className="mb-4" />
       <PaymentInformation />
       <button
-        className="btn btn-primary btn-lg btn-block"
+        className="btn btn-primary btn-lg btn-block mt-2"
         type="submit"
         disabled={submitting}
       >
-        Continue to checkout
+        Checkout
       </button>
     </form>
   );

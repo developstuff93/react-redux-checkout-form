@@ -1,5 +1,5 @@
 import { Field } from "redux-form";
-import { isEmail, isRequired } from "../helpers";
+import { isEmail, isRequired, minLength, normalizeZipCode } from "../helpers";
 import Input from "./input";
 
 const ShippingInformation = () => {
@@ -104,7 +104,8 @@ const ShippingInformation = () => {
           id="shipping-zip"
           name="shipping-zip"
           autoComplete="shipping postal-code"
-          validate={[isRequired]}
+          normalize={normalizeZipCode}
+          validate={[isRequired, minLength(5)]}
           component={Input}
         />
       </div>

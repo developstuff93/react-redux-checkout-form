@@ -1,6 +1,13 @@
 import React from "react";
 import { Field } from "redux-form";
-import { isRequired } from "../helpers";
+import {
+  isRequired,
+  minLength,
+  normalizeCardNumber,
+  normalizeCVV,
+  normalizeExpiration,
+  validateExpiration,
+} from "../helpers";
 import Input from "./input";
 
 const PaymentInformation = () => {
@@ -23,7 +30,8 @@ const PaymentInformation = () => {
           id="cc-number"
           name="cc-number"
           autoComplete="cc-number"
-          validate={[isRequired]}
+          normalize={normalizeCardNumber}
+          validate={[isRequired, minLength(10)]}
           component={Input}
         />
         <div className="row">
@@ -33,7 +41,8 @@ const PaymentInformation = () => {
             name="cc-expiration"
             autoComplete="cc-expiration"
             className="col-md-3 mb-3"
-            validate={[isRequired]}
+            normalize={normalizeExpiration}
+            validate={[isRequired, validateExpiration]}
             component={Input}
           />
           <Field
@@ -42,7 +51,8 @@ const PaymentInformation = () => {
             name="cc-cvv"
             className="col-md-3 mb-3"
             autoComplete="cc-cvv"
-            validate={[isRequired]}
+            normalize={normalizeCVV}
+            validate={[isRequired, minLength(3)]}
             component={Input}
           />
         </div>
